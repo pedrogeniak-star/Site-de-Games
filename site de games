@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming | Sua Loja de Jogos Online</title>
+    <style>
+        /* Configurações Globais e Paleta de Cores */
+        :root {
+            --bg-principal: #0b0c10;
+            --bg-secundario: #1f2833;
+            --texto-claro: #c5a059;
+            --texto-branco: #ffffff;
+            --cor-destaque: #00ffcc;
+            --cor-botao: #ff0055;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-branco);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Cabeçalho (Navbar) */
+        header {
+            background-color: rgba(31, 40, 51, 0.95);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--texto-branco);
+        }
+
+        .logo span {
+            color: var(--cor-destaque);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cor-destaque);
+        }
+
+        /* Banner Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(11, 12, 16, 0.6), rgba(11, 12, 16, 0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1470') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--cor-botao);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .btn-principal {
+            background-color: var(--cor-botao);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn-principal:hover {
+            transform: scale(1.05);
+            background-color: #d60048;
+        }
+
+        /* Seção de Produtos (Grid de Jogos) */
+        .produtos-container {
+            padding: 60px 5%;
+        }
+
+        .titulo-secao {
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .titulo-secao::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50%;
+            height: 3px;
+            background-color: var(--cor-destaque);
+        }
+
+        .grid-jogos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card-jogo {
+            background-color: var(--bg-secundario);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #2d3748;
+        }
+
+        .card-jogo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
+        }
+
+        .imagem-jogo {
+            width: 100%;
+            height: 300px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .info-jogo {
+            padding: 20px;
+        }
+
+        .categoria-jogo {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--cor-destaque);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .nome-jogo {
+            font-size: 20px;
+            margin-bottom: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .compra-jogo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preco {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .btn-comprar {
+            background-color: transparent;
+            border: 2px solid var(--cor-destaque);
+            color: var(--cor-destaque);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-comprar:hover {
+            background-color: var(--cor-destaque);
+            color: var(--bg-principal);
+        }
+
+        /* Rodapé (Footer) */
+        footer {
+            background-color: #07080a;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid var(--bg-secundario);
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">NEXUS<span>GAMING</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Lançamentos</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="#">Suporte</a></li>
+                <li><a href="#">Contatos</a></li>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Suba de Nível no Seu <span>Gameplay</span></h1>
+        <p>As melhores chaves digitais, ativação imediata e os preços mais competitivos do mercado de games de forma segura e rápida.</p>
+        <a href="#catalogo" class="btn-principal">Ver Catálogo</a>
+    </section>
+
+    <main class="produtos-container" id="catalogo">
+        <h2 class="titulo-secao">Destaques da Semana</h2>
+        
+        <div class="grid-jogos">
+            
+            <div class="card-jogo">
+                <div class="imagem-jogo" style="background-image: url('https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="info-jogo">
+                    <span class="categoria-jogo">Ação / RPG</span>
+                    <h3 class="nome-jogo">Cyber Chrono 2088</h3>
+                    <div class="compra-jogo">
+                        <span class="preco">R$ 149,90</span>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-jogo">
+                <div class="imagem-jogo" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="info-jogo">
+                    <span class="categoria-jogo">Estratégia</span>
+                    <h3 class="nome-jogo">Kingdoms & Empires</h3>
+                    <div class="compra-jogo">
+                        <span class="preco">R$ 89,90</span>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-jogo">
+                <div class="imagem-jogo" style="background-image: url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="info-jogo">
+                    <span class="categoria-jogo">Aventura</span>
+                    <h3 class="nome-jogo">Lost Planet: Survival</h3>
+                    <div class="compra-jogo">
+                        <span class="preco">R$ 119,99</span>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-jogo">
+                <div class="imagem-jogo" style="background-image: url('https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&q=80&w=500');"></div>
+                <div class="info-jogo">
+                    <span class="categoria-jogo">Corrida / Simulador</span>
+                    <h3 class="nome-jogo">Apex Velocity Unleashed</h3>
+                    <div class="compra-jogo">
+                        <span class="preco">R$ 199,00</span>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Nexus Gaming. Todos os direitos reservados. Este é um design de e-commerce profissional para fins de portfólio.</p>
+    </footer>
+
+</body>
+</html>
